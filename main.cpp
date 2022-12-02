@@ -3,6 +3,7 @@
 
 
 std::string data[9] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+std::string winner;
 bool game_status = true;
 
 int print_color(int style, int forground, std::string text, int background, int text_format){
@@ -12,14 +13,14 @@ int print_color(int style, int forground, std::string text, int background, int 
 int color_select(int ind){
     if(data[ind] == "O"){
         print_color(0, 97, "  "+data[0]+"  ", 44, 0);
-    }else if (data[ind] == "X")
-    {
+    }else if (data[ind] == "X"){
         print_color(0, 97, "  "+data[ind]+"  ", 41, 0);
     }else{
         print_color(0, 97, "  "+data[ind]+"  ", 107, 0);
     }
     return 0;
 }
+
 int display(){
     print_color(0, 107, "                 ", 30, 0);
     std::cout << "\n";
@@ -99,10 +100,85 @@ int main(){
 
         //win or draw conditions
         if(
-            ((data[0] == data[1] && data[1] == data[2]) ||
-            (data[3] == data[4] && data[4] == data[5]) ||
-            (data[6] == data[7] && data[8] == data[9]) ) ||x
-        )
+            (
+                (data[0] == data[1] && data[1] == data[2])
+                ||
+                (data[3] == data[4] && data[4] == data[5])
+                ||
+                (data[6] == data[7] && data[7] == data[8])
+            )
+            ||
+            (
+                (data[0] == data[3] && data[3] == data[6])
+                ||
+                (data[1] == data[4] && data[4] == data[7])
+                ||
+                (data[2] == data[5] && data[5] == data[8])
+            )
+            ||
+            (
+                (data[0] == data[4] && data[4] == data[8])
+                ||
+                (data[2] == data[4] && data[4] == data[6])
+            )
+        ){
+            if(data[0] == data[1] && data[1] == data[2]){
+                if(data[0] == "X"){
+                    winner = "player 1";
+                }else{
+                    winner = "player 2";
+                }
+            }else if (data[3] == data[4] && data[4] == data[5]){
+                if(data[3] == "X"){
+                    winner = "player 1";
+                }else{
+                    winner = "player 2";
+                }
+            }else if (data[6] == data[7] && data[7] == data[8]){
+                if(data[6] == "X"){
+                    winner = "player 1";
+                }else{
+                    winner = "player 2";
+                }
+            }else if (data[0] == data[3] && data[3] == data[6]){
+                if(data[0] == "X"){
+                    winner = "player 1";
+                }else{
+                    winner = "player 2";
+                }
+            }else if (data[1] == data[4] && data[4] == data[7]){
+                if(data[1] == "X"){
+                    winner = "player 1";
+                }else{
+                    winner = "player 2";
+                }
+            }else if (data[2] == data[5] && data[5] == data[8]){
+                if(data[2] == "X"){
+                    winner = "player 1";
+                }else{
+                    winner = "player 2";
+                }
+            }else if (data[0] == data[4] && data[4] == data[8]){
+                if(data[0] == "X"){
+                    winner = "player 1";
+                }else{
+                    winner = "player 2";
+                }
+            }else if (data[2] == data[4] && data[4] == data[6]){
+                if(data[2] == "X"){
+                    winner = "player 1";
+                }else{
+                    winner = "player 2";
+                }
+            }
+            if(winner == "player 1"){
+                print_color(0, 97, "________________________________we have a winner: "+winner+" ______________________________", 41, 0);
+            }else{
+                print_color(0, 97, "________________________________we have a winner: "+winner+" ______________________________", 44, 0);
+            }
+            std::cout << "";
+            game_status = false;
+        }
     }
 
 
