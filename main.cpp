@@ -5,19 +5,59 @@
 std::string data[9] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 bool game_status = true;
 
-
+int print_color(int style, int forground, std::string text, int background, int text_format){
+    std::cout << "\033["+std::to_string(style)+";"+std::to_string(forground)+";"+std::to_string(background)+"m"+text+"\033["+std::to_string(text_format)+"m";
+    return 0;
+}
+int color_select(int ind){
+    if(data[ind] == "O"){
+        print_color(0, 97, "  "+data[0]+"  ", 44, 0);
+    }else if (data[ind] == "X")
+    {
+        print_color(0, 97, "  "+data[ind]+"  ", 41, 0);
+    }else{
+        print_color(0, 97, "  "+data[ind]+"  ", 107, 0);
+    }
+    return 0;
+}
 int display(){
-    std::cout << " "+data[0]+" | "+data[1]+" | "+data[2]+" \n";
-    std::cout << "---+---+---\n";
-    std::cout << " "+data[3]+" | "+data[4]+" | "+data[5]+" \n";
-    std::cout << "---+---+---\n";
-    std::cout << " "+data[6]+" | "+data[7]+" | "+data[8]+" \n";
+    print_color(0, 107, "                 ", 30, 0);
+    std::cout << "\n";
+
+    color_select(0);
+    print_color(0, 107, "|", 30, 0);
+    color_select(1);
+    print_color(0, 107, "|", 30, 0);
+    color_select(2);
+    std::cout << "\n";
+    print_color(0, 107, "   ---+---+---   ", 30, 0);
+    std::cout << "\n";
+
+    color_select(3);
+    print_color(0, 107, "|", 30, 0);
+    color_select(4);
+    print_color(0, 107, "|", 30, 0);
+    color_select(5);
+    std::cout << "\n";
+    print_color(0, 107, "   ---+---+---   ", 30, 0);
+    std::cout << "\n";
+
+    color_select(6);
+    print_color(0, 107, "|", 30, 0);
+    color_select(7);
+    print_color(0, 107, "|", 30, 0);
+    color_select(8);
+    std::cout << "\n";    
+
+    print_color(0, 107, "                 ", 30, 0);
+    std::cout << "\n";
+
+
+
     return 0;
 }
 
-int print_color(int style, int forground, int background, int text_format){
-    std::cout << "\033["+std::to_string(style)+";"+std::to_string(forground)+";"+std::to_string(background)+"m"+text+"\033["+std::to_string(text_format)+"m";
-}
+
 
 int main(){
     std::string turn = "player 1";
@@ -56,6 +96,13 @@ int main(){
         std::cout << "______________________________________________________________\n";
         display();
         std::cout << "______________________________________________________________\n";
+
+        //win or draw conditions
+        if(
+            ((data[0] == data[1] && data[1] == data[2]) ||
+            (data[3] == data[4] && data[4] == data[5]) ||
+            (data[6] == data[7] && data[8] == data[9]) ) ||
+        )
     }
 
 
