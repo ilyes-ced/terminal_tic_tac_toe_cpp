@@ -17,19 +17,19 @@ int main(){
 
 
     while(game_status){
-        cout << "turn of player : "+turn+"\n please enter your box number\n";
-        cin >> input;
+        std::cout << "turn of player : "+turn+"\n please enter your box number\n";
+        std::cin >> input;
 
         while(input > 9 || input < 0){
-            cout << "!!!!!!!!!!!!!!! please enter valid number !!!!!!!!!!!!!!!\n";
-            cin >> input;
+            std::cout << "!!!!!!!!!!!!!!! please enter valid number !!!!!!!!!!!!!!!\n";
+            std::cin >> input;
             //cout << input;
         }
 
-        while(!(data[input-1] == to_string(input))){
-            cout << "!!!!!!!!!!!!!!!       already taken       !!!!!!!!!!!!!!!\n";
-            cout << "!!!!!!!!!!!!!!! please enter valid number !!!!!!!!!!!!!!!\n";
-            cin >> input;
+        while(!(data[input-1] == std::to_string(input))){
+            std::cout << "!!!!!!!!!!!!!!!       already taken       !!!!!!!!!!!!!!!\n";
+            std::cout << "!!!!!!!!!!!!!!! please enter valid number !!!!!!!!!!!!!!!\n";
+            std::cin >> input;
         }
 
         
@@ -41,10 +41,10 @@ int main(){
             data[input-1] = "O";
             turn = "player 1";
         }
-        cout << "\033[1;31mbold red text\033[0m\n";
-        cout << "______________________________________________________________\n";
+        std::cout << "\033[1;31mbold red text\033[0m\n";
+        std::cout << "______________________________________________________________\n";
         display();
-        cout << "______________________________________________________________\n";
+        std::cout << "______________________________________________________________\n";
 
         //win or draw conditions
         if(
@@ -79,7 +79,7 @@ int main(){
             }else{
                 print_color(0, 97, "________________________________we have a winner: "+winner+" ______________________________", 44, 0);
             }
-            cout << "";
+            std::cout << "";
             game_status = false;
         }
     }

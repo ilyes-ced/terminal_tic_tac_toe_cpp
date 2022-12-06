@@ -23,11 +23,13 @@ int color_select(std::string ind){
 
 
 
-std::string dicide_winner(std::string letter){
+std::string decide_winner(std::string letter){
     if(letter == "X"){
         return "player 1";
-    }else{
+    }else if(letter == "O"){
         return "player 2";
+    }else{
+        return "draw";
     }
 }
 
